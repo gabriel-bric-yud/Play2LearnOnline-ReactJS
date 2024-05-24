@@ -194,9 +194,9 @@ function AnagramHuntGame(props) {
   }
 
   function checkAnswer(value) {
-    if (value != word) {
+    if (value.toUpperCase() != word.toUpperCase()) {
       wordList.forEach((elem) => {
-        if (value === elem) {
+        if (value.toUpperCase() === elem.toUpperCase()) {
           let currentAnswers = answerValues
           currentAnswers.push(elem)
           setAnswerValues(currentAnswers)
