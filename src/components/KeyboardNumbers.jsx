@@ -3,11 +3,11 @@ import React, {useEffect} from 'react';
 function KeyboardNumbers({setUserAnswer}) {
   useEffect(() => {
     const getKeyUp = (e) => {
-      e.preventDefault(); // prevent the normal behavior of the key
-      if (e.keyCode === 32 || e.keyCode === 13) { // space/Enter
+      e.preventDefault(); 
+      if (e.keyCode === 32 || e.keyCode === 13) { 
         setUserAnswer('');
       }
-      if (e.keyCode === 8) { // backspace
+      if (e.keyCode === 8) { 
         setUserAnswer(prevUserAnswer =>
         prevUserAnswer.substring(0, prevUserAnswer.length - 1));
         }
@@ -21,7 +21,6 @@ function KeyboardNumbers({setUserAnswer}) {
     window.addEventListener('keyup', getKeyUp);
 
     return () => {
-      console.log('hi')
       window.removeEventListener('keyup', getKeyUp)
     }
   }, [])
