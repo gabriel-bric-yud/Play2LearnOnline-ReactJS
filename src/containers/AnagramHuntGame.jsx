@@ -166,6 +166,7 @@ function AnagramHuntGame(props) {
   const [userAnswer, setUserAnswer] = useState("")
   const [anagramsList, setAnagramsList] = useState(anagrams[props.wordLength])
 
+  /** 
   const TouchScreenAutoSubmit = (e) => {
     checkAnswer(userAnswer)
   }
@@ -177,6 +178,8 @@ function AnagramHuntGame(props) {
       window.removeEventListener('touchend', TouchScreenAutoSubmit)
     }
   }, [])
+
+  */
 
   let indexes = []
   for (let i = 0; i < anagramsList.length; i++) {
@@ -323,7 +326,7 @@ function AnagramHuntGame(props) {
 
       <div className = "row justify-content-center m-2">
         <input type = "text" className = "form-control w-75" placeholder = "type here" 
-          onChange = {(e) => { //mobile support on change instead of only enter key
+          onInput = {(e) => { //mobile support on change instead of only enter key
             setUserAnswer(e.target.value);
             if (navigator.userAgentData.mobile == true || (navigator.maxTouchPoints > 0 && (window.screen.width < 768 || window.screen.height < 768))){
               checkAnswer(e.target.value)
