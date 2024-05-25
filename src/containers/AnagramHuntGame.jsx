@@ -309,9 +309,7 @@ function AnagramHuntGame(props) {
 
       <div className = "row justify-content-center m-2">
         <input type = "text" className = "form-control w-75" placeholder = "type here" 
-          onChange = {(e) => { //touch support instead of only enter key
-            setUserAnswer(e.target.value);
-            checkAnswer(e.target.value)
+          onInput = {(e) => { //touch support instead of only enter key
             if (navigator.maxTouchPoints > 0){
               checkAnswer(e.target.value)
             } 
