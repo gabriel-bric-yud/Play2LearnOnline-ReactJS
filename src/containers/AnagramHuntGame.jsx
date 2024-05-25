@@ -332,7 +332,7 @@ function AnagramHuntGame(props) {
               checkAnswer(e.target.value)
             } */
             console.log("oninput")
-            console.log(navigator.userAgentData.mobile)
+            //console.log(navigator.userAgentData.mobile)
             console.log(navigator.maxTouchPoints)
             console.log(window.screen.width)
             console.log(window.screen.height)
@@ -345,7 +345,7 @@ function AnagramHuntGame(props) {
           onChange = {(e) => { //mobile support on change instead of only enter key
             setUserAnswer(e.target.value);
             console.log("onchange")
-            console.log(navigator.userAgentData.mobile)
+            //console.log(navigator.userAgentData.mobile)
             console.log(navigator.maxTouchPoints)
             console.log(window.screen.width)
             console.log(window.screen.height)
