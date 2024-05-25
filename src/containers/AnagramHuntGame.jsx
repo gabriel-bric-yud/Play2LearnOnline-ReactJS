@@ -311,6 +311,7 @@ function AnagramHuntGame(props) {
         <input type = "text" className = "form-control w-75" placeholder = "type here" 
           onInput = {(e) => { //touch support instead of only enter key
             setUserAnswer(e.target.value);
+            checkAnswer(e.target.value)
             if (navigator.maxTouchPoints > 0){
               checkAnswer(e.target.value)
             } 
