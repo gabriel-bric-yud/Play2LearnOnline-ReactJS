@@ -11,20 +11,7 @@ import KeyboardNumbers from '../components/KeyboardNumbers.jsx';
 
 
 function MathFactsGame(props) {
-  
-  let numbers = [];
-  for (let i = 1; i <10; i++) {
-    numbers.push(i);
-    if (i === 9) {
-      numbers.push(0)
-    }
-  };
 
-  const numberButtons = numbers.map((number) =>
-    <NumberButton value={number} key={number} handleClick = {appendToAnswer} />
-  );
-
-  ////////////////////////////////////////////////////////////////////////////////////////////
   
   let randNums = getRandNumbers(props.operation[1], 0, Number(props.maxNumber[0]));
   const [operands, setOperands] = useState(randNums);
@@ -54,6 +41,21 @@ function MathFactsGame(props) {
     }
     return {num1, num2};
   }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////
+
+  let numbers = [];
+  for (let i = 1; i <10; i++) {
+    numbers.push(i);
+    if (i === 9) {
+      numbers.push(0)
+    }
+  };
+
+  const numberButtons = numbers.map((number) =>
+    <NumberButton value={number} key={number} handleClick = {appendToAnswer} />
+  );
+
 
   function appendToAnswer(num) {
     setUserAnswer(String(Number(userAnswer + num)));

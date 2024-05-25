@@ -326,11 +326,31 @@ function AnagramHuntGame(props) {
 
       <div className = "row justify-content-center m-2">
         <input type = "text" className = "form-control w-75" placeholder = "type here" 
+          onInput = {(e) => { //mobile support on change instead of only enter key
+            setUserAnswer(e.target.value);
+            /**            if (navigator.userAgentData.mobile == true || (navigator.maxTouchPoints > 0 && (window.screen.width < 768 || window.screen.height < 768))){
+              checkAnswer(e.target.value)
+            } */
+            console.log("oninput")
+            console.log(navigator.userAgentData.mobile)
+            console.log(navigator.maxTouchPoints)
+            console.log(window.screen.width)
+            console.log(window.screen.height)
+            console.log(e.target.value)
+            console.log(e.data)
+            console.log('///////////////////////')
+            checkAnswer(e.target.value)
+          }}
+
           onChange = {(e) => { //mobile support on change instead of only enter key
             setUserAnswer(e.target.value);
-            if (navigator.userAgentData.mobile == true || (navigator.maxTouchPoints > 0 && (window.screen.width < 768 || window.screen.height < 768))){
-              checkAnswer(e.target.value)
-            }
+            console.log("onchange")
+            console.log(navigator.userAgentData.mobile)
+            console.log(navigator.maxTouchPoints)
+            console.log(window.screen.width)
+            console.log(window.screen.height)
+            console.log(e.target.value)
+            console.log(e.data)
             checkAnswer(e.target.value)
           }}
           
