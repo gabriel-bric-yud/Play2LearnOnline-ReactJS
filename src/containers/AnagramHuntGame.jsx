@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom"
 import Label from "../components/Label.jsx";
 import Score from "../components/Score.jsx";
@@ -161,25 +161,8 @@ function AnagramHuntGame(props) {
   ////////////////////////////////////////////////////////////////////////////////////////////
 
 
-  
   const [answered, setAnswered] = useState(false);
-  const [userAnswer, setUserAnswer] = useState("")
   const [anagramsList, setAnagramsList] = useState(anagrams[props.wordLength])
-
-  /** 
-  const TouchScreenAutoSubmit = (e) => {
-    checkAnswer(userAnswer)
-  }
-
-  window.addEventListener('touchend', TouchScreenAutoSubmit);
-
-  useEffect(() => {
-    return () => {
-      window.removeEventListener('touchend', TouchScreenAutoSubmit)
-    }
-  }, [])
-
-  */
 
   let indexes = []
   for (let i = 0; i < anagramsList.length; i++) {
@@ -326,34 +309,13 @@ function AnagramHuntGame(props) {
 
       <div className = "row justify-content-center m-2">
         <input type = "text" className = "form-control w-75" placeholder = "type here" 
-          onInput = {(e) => { //mobile support on change instead of only enter key
+          onInput = {(e) => { //touch support instead of only enter key
             setUserAnswer(e.target.value);
-            /**            if (navigator.userAgentData.mobile == true || (navigator.maxTouchPoints > 0 && (window.screen.width < 768 || window.screen.height < 768))){
+            if (navigator.maxTouchPoints > 0){
               checkAnswer(e.target.value)
-            } */
-            console.log("oninput")
-            //console.log(navigator.userAgentData.mobile)
-            console.log(navigator.maxTouchPoints)
-            console.log(window.screen.width)
-            console.log(window.screen.height)
-            console.log(e.target.value)
-            console.log(e.data)
-            console.log('///////////////////////')
-            checkAnswer(e.target.value)
+            } 
           }}
 
-          onChange = {(e) => { //mobile support on change instead of only enter key
-            setUserAnswer(e.target.value);
-            console.log("onchange")
-            //console.log(navigator.userAgentData.mobile)
-            console.log(navigator.maxTouchPoints)
-            console.log(window.screen.width)
-            console.log(window.screen.height)
-            console.log(e.target.value)
-            console.log(e.data)
-            checkAnswer(e.target.value)
-          }}
-          
           onKeyDown={(e) => {
           if (e.key == "Enter") {
             checkAnswer(e.target.value)
