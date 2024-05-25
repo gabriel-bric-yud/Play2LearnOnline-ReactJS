@@ -160,20 +160,22 @@ function AnagramHuntGame(props) {
 
   ////////////////////////////////////////////////////////////////////////////////////////////
 
+
+  
+  const [answered, setAnswered] = useState(false);
+  const [userAnswer, setUserAnswer] = useState("")
+  const [anagramsList, setAnagramsList] = useState(anagrams[props.wordLength])
+  const TouchScreen = (e) => {
+    checkAnswer(userAnswer)
+  }
+
+  window.addEventListener('touchend', TouchScreen);
+
   useEffect(() => {
-    const TouchScreen = (e) => {
-      checkAnswer(e.target.value)
-    }
-
-    window.addEventListener('touchend', TouchScreen);
-
     return () => {
       window.removeEventListener('touchend', TouchScreen)
     }
   }, [])
-  
-  const [answered, setAnswered] = useState(false);
-  const [anagramsList, setAnagramsList] = useState(anagrams[props.wordLength])
 
   let indexes = []
   for (let i = 0; i < anagramsList.length; i++) {
@@ -320,7 +322,8 @@ function AnagramHuntGame(props) {
 
       <div className = "row justify-content-center m-2">
         <input type = "text" className = "form-control w-75" placeholder = "type here" 
-          onChange = {(e) => {
+          onChange = {(e) => { //mobile support on change instead of only enter key
+            setUserAnswer(e.target.value);
             if (navigator.userAgentData.mobile == true){
               checkAnswer(e.target.value)
             }
