@@ -331,6 +331,7 @@ function AnagramHuntGame(props) {
             if (navigator.userAgentData.mobile == true || (navigator.maxTouchPoints > 0 && (window.screen.width < 768 || window.screen.height < 768))){
               checkAnswer(e.target.value)
             }
+            checkAnswer(e.target.value)
           }}
           
           onKeyDown={(e) => {
