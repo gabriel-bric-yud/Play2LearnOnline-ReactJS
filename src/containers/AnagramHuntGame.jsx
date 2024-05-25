@@ -158,14 +158,15 @@ function AnagramHuntGame(props) {
     ]
   }
 
+  ////////////////////////////////////////////////////////////////////////////////////////////
+  
+  const [answered, setAnswered] = useState(false);
   const [anagramsList, setAnagramsList] = useState(anagrams[props.wordLength])
 
   let indexes = []
   for (let i = 0; i < anagramsList.length; i++) {
     indexes.push(i)
   }
-
-  const [answered, setAnswered] = useState(false);
 
   let newAnagramData = getWordList(indexes)
   const [wordList, setWordList] = useState(newAnagramData[0])
@@ -176,7 +177,7 @@ function AnagramHuntGame(props) {
   const [answerDisplay, setDisplay] = useState([])
   const [remaining, setRemaining] = useState(wordList.length - answerValues - 1)
   
-  const gameLength = 60; // Seconds
+  const gameLength = 60;
   const [Time, setTime] = useState(gameLength);
   const [score, setScore] = useState(0)
 
@@ -192,6 +193,8 @@ function AnagramHuntGame(props) {
   function randomWord(list = []) {
     return list[Math.floor(Math.random() * list.length)]
   }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////
 
   function checkAnswer(value) {
     if (value.toUpperCase() != word.toUpperCase()) {
@@ -226,10 +229,11 @@ function AnagramHuntGame(props) {
     }
   }
 
+  ////////////////////////////////////////////////////////////////////////////////////////////
 
   function restart() {
     setAnswered(false)
-    setTime(5);
+    setTime(gameLength);
     setScore(0);
     let indexes = []
     for (let i = 0; i < anagramsList.length; i++) {
@@ -237,7 +241,6 @@ function AnagramHuntGame(props) {
     }
     setAvailableIndexes(indexes)
     let newAnagram = getWordList(indexes)
-    console.log(newAnagram)
     setWordList(newAnagram[0])
     setRemaining(newAnagram[0].length - 1)
     setWord(randomWord(newAnagram[0]))
@@ -281,17 +284,19 @@ function AnagramHuntGame(props) {
   }
 
 
-
+  ////////////////////////////////////////////////////////////////////////////////////////////
   if (answered) {
     setAnswered(false)
   }
   const fadeDiv = answered ? 'row my-2 fade' : 'row my-2';
 
+  ////////////////////////////////////////////////////////////////////////////////////////////
+
   return( 
     <div className = "game container d-grid justify-content-center">
       <div className = "d-flex border-bottom justify-content-between top ">
         <Score score = {score}  textWeight = "1.5rem" />
-        <Timer totalTime={gameLength} setTime={setTime} Time = {Time}  textWeight = "1.5rem" />
+        <Timer totalTime={gameLength} Time = {Time}  setTime={setTime}  textWeight = "1.5rem" />
       </div>
 
       <div className = "row justify-content-center">
@@ -304,24 +309,16 @@ function AnagramHuntGame(props) {
       <div className = "row justify-content-center m-2">
         <input type = "text" className = "form-control w-75" placeholder = "type here" 
           onChange = {(e) => {
-            if (navigator.userAgent == "/Android/i"
-              || navigator.userAgent == "/webOS/i"
-              || navigator.userAgent == "/iPhone/i"
-              || navigator.userAgent == "/iPad/i"
-              || navigator.userAgent == "/iPod/i"
-              || navigator.userAgent == "/BlackBerry/i"
-              || navigator.userAgent == "/Windows Phone/i")
-              {
-                checkAnswer(e.target.value)
-              }
-
+            if (navigator.userAgentData.mobile != false){
+              checkAnswer(e.target.value)
+            }
           }}
-          
+
           onKeyDown={(e) => {
           if (e.key == "Enter") {
             checkAnswer(e.target.value)
           }
-        }}></input>
+        }} />
       </div>
 
       <div className = "d-grid justify-content-left">
