@@ -308,8 +308,12 @@ function AnagramHuntGame(props) {
 
       <div className = "row justify-content-center m-2">
         <input type = "text" className = "form-control w-75" placeholder = "type here" 
+          onTouchEnd = {(e) => {
+            checkAnswer(e.target.value)
+          }}
+
           onChange = {(e) => {
-            if (navigator.userAgentData.mobile != false){
+            if (navigator.userAgentData.mobile == true){
               checkAnswer(e.target.value)
             }
           }}
