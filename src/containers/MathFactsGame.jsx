@@ -7,7 +7,7 @@ import ClearButton from '../components/ClearButton.jsx'
 import Timer from '../components/Timer.jsx';
 import Score from '../components/Score.jsx';
 import Answer from '../components/Answer.jsx';
-import Keyboard from '../components/Keyboard.jsx';
+import KeyboardNumbers from '../components/KeyboardNumbers.jsx';
 
 
 function MathFactsGame(props) {
@@ -18,7 +18,7 @@ function MathFactsGame(props) {
   const [userAnswer, setUserAnswer] = useState('');
   const [answered, setAnswered] = useState(false);
   const gameLength = 30; // Seconds
-  const [checkTime, setCheckTime] = useState(gameLength);
+  const [Time, setTime] = useState(gameLength);
   const [score, setScore] = useState(0);
 
   function getRandNumbers(operator, low, high) {
@@ -27,16 +27,16 @@ function MathFactsGame(props) {
     const numHigh = Math.max(num1, num2);
     const numLow = Math.min(num1, num2);
 
-    if(operator === '-') { // Make sure higher num comes first
+    if(operator === '-') { 
       num1 = numHigh;
       num2 = numLow;
     }
   
     if(operator === '/') {
-      if (num2 === 0) { // No division by zero
+      if (num2 === 0) { 
         num2 = randInt(1, high);
       }
-      num1 = (num1 * num2); // product
+      num1 = (num1 * num2);
     }
     return {num1, num2};
   }
@@ -95,13 +95,13 @@ function MathFactsGame(props) {
   /////////////////////////////////////////////////////////////////////////////
 
   function restart() {
-    setCheckTime(gameLength);
+    setTime(gameLength);
     setScore(0);
     newQuestion();
   }
 
 
-  if (checkTime === 0) {
+  if (Time === 0) {
     return (
       <div className="text-center game">
         <Label text = {props.operation[0].toUpperCase()} textWeight = "2rem" />
@@ -158,9 +158,9 @@ function MathFactsGame(props) {
         <Score score = {score}/>
       </div>
       <div className = "row">
-        <Timer totalTime={gameLength} checkTime = {checkTime} setCheckTime={setCheckTime} />
+        <Timer totalTime={gameLength} Time = {Time} setTime={setTime} />
       </div>
-      <Keyboard setUserAnswer={setUserAnswer} />
+      <KeyboardNumbers setUserAnswer={setUserAnswer} />
     </div>
   )
 }

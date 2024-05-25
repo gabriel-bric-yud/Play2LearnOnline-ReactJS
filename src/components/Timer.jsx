@@ -11,7 +11,7 @@ function Timer(props) {
       setTimeLeft(prevTimeLeft => prevTimeLeft - 1);
       time--
       if (time == 0) {
-        props.setCheckTime(0)
+        props.setTime(0)
       }
     }, 1000);
 

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-function Keyboard({setUserAnswer}) {
+function KeyboardNumbers({setUserAnswer}) {
   useEffect(() => {
     const getKeyUp = (e) => {
       e.preventDefault(); // prevent the normal behavior of the key
@@ -17,6 +17,7 @@ function Keyboard({setUserAnswer}) {
         }
       }
     }
+
     window.addEventListener('keyup', getKeyUp);
 
     return () => {
@@ -29,4 +30,4 @@ function Keyboard({setUserAnswer}) {
 }
 
 
-export default Keyboard;
+export default KeyboardNumbers;
