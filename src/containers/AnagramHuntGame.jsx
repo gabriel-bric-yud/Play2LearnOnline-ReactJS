@@ -181,6 +181,7 @@ function AnagramHuntGame(props) {
   const gameLength = 60;
   const [Time, setTime] = useState(gameLength);
   const [score, setScore] = useState(0)
+  const [allFound, setAllFound] = useState(false)
 
   
   function getWordList(indexArray) {
@@ -211,11 +212,16 @@ function AnagramHuntGame(props) {
           ))
 
           if (wordList.length == 1) { 
-            newAnagramData = getWordList(availableIndexes)
-            setWordList(newAnagramData[0])
-            setWord(randomWord(newAnagramData[0]))
-            setAvailableIndexes(newAnagramData[1])
-            setRemaining(newAnagramData[0].length - 1)
+            if (availableIndexes.length == 0) {
+              setAllFound(true)
+            }
+            else {
+              newAnagramData = getWordList(availableIndexes)
+              setWordList(newAnagramData[0])
+              setWord(randomWord(newAnagramData[0]))
+              setAvailableIndexes(newAnagramData[1])
+              setRemaining(newAnagramData[0].length - 1)
+            }
           }
           else {
             setWordList(wordList)
@@ -249,7 +255,7 @@ function AnagramHuntGame(props) {
     setDisplay([])
   }
 
-  if (Time === 0 || availableIndexes.length == 0) {
+  if (Time === 0 || allFound == true) {
     let text = ""
     if (Time === 0) {
       text = "Time's Up!"
