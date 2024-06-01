@@ -16,7 +16,7 @@ function Header() {
               </li>
             </ul>
           </div>
-          <a className = "navbar-brand m-1" href = "/">Final Project React - JavaScript Developer (ed2go)</a>
+          <a className = "navbar-brand m-1" href = "/">Final Project React - JavaScript Developer</a>
         </div>
       </nav>
     </header>
